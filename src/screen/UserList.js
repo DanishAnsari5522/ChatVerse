@@ -1,14 +1,16 @@
-import { View, Text, Image, StyleSheet } from 'react-native'
+import { View, Text, Image, StyleSheet ,TouchableOpacity} from 'react-native';
+import {useNavigation} from '@react-navigation/native'
 
 
-function UserList({navigation}) {
+function UserList() {
     const seen = 9;
+    const navigation=useNavigation();
     return (
-        <View style={styles.usercard} >
+        <TouchableOpacity style={styles.usercard} onPress={()=>{navigation.navigate("ChatBox")}}>
             <View style={styles.usernameandimg}>
                 <Image source={require('../../assets/images.png')} style={styles.userprofilepic} />
                 <View>
-                    <Text style={styles.username} onPress={() => { navigation.navigate("Profile") }}>Danish Ansari</Text>
+                    <Text style={styles.username}>Danish Ansari</Text>
                     <Text style={styles.lastmsg}>icon hii..</Text>
                 </View>
 
@@ -17,7 +19,7 @@ function UserList({navigation}) {
                 <Text style={styles.msgtime}>1 hour ago</Text>
                 <View style={styles.fornewmsgpopup}></View>
             </View>
-        </View>
+        </TouchableOpacity>
 
     )
 }
@@ -30,7 +32,7 @@ const styles = StyleSheet.create({
         justifyContent: 'space-between',
         alignItems: 'center',
         borderBottomWidth: 1,
-        borderBottomColor:'#ddddda',
+        borderBottomColor:'#e7e7e7',
         marginVertical: 10,
         paddingBottom: 10,
         paddingHorizontal:26
@@ -60,7 +62,7 @@ const styles = StyleSheet.create({
     fornewmsgpopup: {
         width: 9,
         height: 9,
-        backgroundColor: 'pink',
+        backgroundColor: '#a567be',
         borderRadius: 10,
         marginLeft: 50,
         // paddingTop:10

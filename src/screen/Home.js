@@ -5,8 +5,8 @@ import NameScreen from './NameScreen';
 
 
 function Home() {
-    var no = 'dan';
-    var name = 'dan';
+    var no = 'da';
+    var name = 'da';
     if (!no) {
         return (
             <View>

@@ -1,10 +1,11 @@
-import { View, Text, StyleSheet, Image, SafeAreaView } from 'react-native'
+import { View, Text, StyleSheet, Image, SafeAreaView, ScrollView } from 'react-native';
+import Constants from "expo-constants";
 import AddUserHeader from '../Header/AddUserHeader';
 
 
 function AddUser() {
     return (
-        <SafeAreaView>
+
         <View style={styles.main}>
             <View style={styles.heder}>
                 <AddUserHeader />
@@ -12,97 +13,58 @@ function AddUser() {
                     <Text>
                         Contacts
                     </Text>
-                    <Text>
+                    <Text style={styles.refresh}>
                         Refresh
                     </Text>
                 </View>
             </View>
 
-            <View style={styles.mainprofilecomp}>
-                <View style={styles.profileimgandname}>
-                    <Image resizeMode='contain' source={require('../../assets/images.png')} style={styles.profileimg} />
-                    <View style={styles.nameandno}>
-                        <Text style={styles.name}>Danish Ansari</Text>
-                        <Text style={styles.phoneNo}>9262786676</Text>
+            <ScrollView>
+                <View style={styles.mainprofilecomp}>
+                    <View style={styles.profileimgandname}>
+                        <Image resizeMode='contain' source={require('../../assets/images.png')} style={styles.profileimg} />
+                        <View style={styles.nameandno}>
+                            <Text style={styles.name}>Danish Ansari</Text>
+                            <Text style={styles.phoneNo}>9262786676</Text>
+                        </View>
                     </View>
+                    <Text style={styles.invite}>Invite</Text>
                 </View>
-                <Text style={styles.invite}>Invite</Text>
-            </View>
 
+            </ScrollView>
             {/* demo */}
-            <View style={styles.mainprofilecomp}>
-                <View style={styles.profileimgandname}>
-                    <Image resizeMode='contain' source={require('../../assets/images.png')} style={styles.profileimg} />
-                    <View style={styles.nameandno}>
-                        <Text style={styles.name}>Danish Ansari</Text>
-                        <Text style={styles.phoneNo}>9262786676</Text>
-                    </View>
-                </View>
-                <Text style={styles.invite}>Invite</Text>
-            </View>
-            <View style={styles.mainprofilecomp}>
-                <View style={styles.profileimgandname}>
-                    <Image resizeMode='contain' source={require('../../assets/images.png')} style={styles.profileimg} />
-                    <View style={styles.nameandno}>
-                        <Text style={styles.name}>Danish Ansari</Text>
-                        <Text style={styles.phoneNo}>9262786676</Text>
-                    </View>
-                </View>
-                <Text style={styles.invite}>Invite</Text>
-            </View>
-            <View style={styles.mainprofilecomp}>
-                <View style={styles.profileimgandname}>
-                    <Image resizeMode='contain' source={require('../../assets/images.png')} style={styles.profileimg} />
-                    <View style={styles.nameandno}>
-                        <Text style={styles.name}>Danish Ansari</Text>
-                        <Text style={styles.phoneNo}>9262786676</Text>
-                    </View>
-                </View>
-                <Text style={styles.invite}>Invite</Text>
-            </View>
-       
-            <View style={styles.mainprofilecomp}>
-                <View style={styles.profileimgandname}>
-                    <Image resizeMode='contain' source={require('../../assets/images.png')} style={styles.profileimg} />
-                    <View style={styles.nameandno}>
-                        <Text style={styles.name}>Danish Ansari</Text>
-                        <Text style={styles.phoneNo}>9262786676</Text>
-                    </View>
-                </View>
-                <Text style={styles.invite}>Invite</Text>
-            </View>
-        
-
-         
 
 
         </View>
-        </SafeAreaView>
     )
 }
 
 const styles = StyleSheet.create({
     main: {
-        marginTop: 20
+        paddingTop: Constants.statusBarHeight
+
     },
 
 
     heder: {
+        height:100
     },
     contactandrefresh: {
         flex: 1,
         flexDirection: 'row',
         justifyContent: 'space-between',
-        paddingHorizontal:10,
-        marginBottom:10
+        paddingHorizontal: 10,
+        marginBottom: 10
     },
-
+    refresh:{
+        color: '#a567be',
+    },
     mainprofilecomp: {
         flex: 1,
         flexDirection: 'row',
         justifyContent: 'space-between',
         alignItems: 'center',
-        paddingHorizontal:20
+        paddingHorizontal: 20
     },
     profileimg: {
         width: 50,
@@ -129,7 +91,7 @@ const styles = StyleSheet.create({
     },
     invite: {
         color: '#a567be',
-        fontSize:16,
+        fontSize: 16,
         // textTransform:'uppercase'
     }
 

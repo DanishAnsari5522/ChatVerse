@@ -1,52 +1,65 @@
-import { View, Text, StyleSheet, ScrollView } from "react-native";
+import { View, Text, StyleSheet, ScrollView, Dimensions, TouchableOpacity } from "react-native";
+import { useNavigation } from "@react-navigation/native";
+import Constants from "expo-constants";
 import Header from "./Header";
 import UserList from "./UserList";
-import AddUser from "./AddUser";
+
 function HomeScreen() {
+    const navigation = useNavigation();
     return (
-        <ScrollView>
-            <View style={styles.mainhome}>
-                {/* for Home Header */}
+        <View style={styles.mainhome}>
+            {/* for Home Header */}
+            <View style={styles.head}>
                 <Header />
-                {/* UserList */}
-                <UserList />
-                <UserList />
-      
-
-
-
-
-                {/* <Profile /> */}
-                {/* <AddUser /> */}
-                {/* <View style={styles.addicon}>
-                    <Text style={styles.add}>+</Text>
-                </View> */}
             </View>
-        </ScrollView>
+
+            <TouchableOpacity style={styles.addicon} onPress={() => { navigation.navigate("AddUser") }}>
+                <Text style={styles.add}>+</Text>
+            </TouchableOpacity>
+            {/* UserList */}
+            <ScrollView style={styles.list}>
+                <UserList />
+           
+
+
+
+            </ScrollView>
+
+        </View>
     )
 }
 
+const windowHeight = Dimensions.get('window').height;
+
 const styles = StyleSheet.create({
     mainhome: {
-        flex: 1,
-        flexDirection: 'column',
-        marginTop: 50,
+        marginTop: 20,
+        height: windowHeight,
+        paddingTop: Constants.statusBarHeight
     },
     addicon: {
-        fontSize: 20,
-        position: 'relative',
-        bottom: 0,
-        right: 10,
+        position: 'absolute',
+        top: windowHeight - 70,
+        right: 20,
+        zIndex: 99,
+        width:55
     },
     add: {
         fontSize: 20,
-        width: 50,
-        height: 50,
-        backgroundColor: 'red',
+        height:55,
+        backgroundColor: '#a567be',
         textAlign: 'center',
         color: 'white',
         borderRadius: 50,
-        zIndex: 100
+        paddingTop:9
+
+    },
+    head: {
+
+    },
+    list: {
+        marginTop: 0,
+        height: windowHeight,
     }
 
 })
