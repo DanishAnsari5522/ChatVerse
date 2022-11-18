@@ -1,117 +1,114 @@
 import React from "react";
-import { View, Text, ScrollView, StyleSheet, Dimensions, TextInput, TouchableOpacity } from 'react-native'
+import { View, Text, ScrollView, StyleSheet, Dimensions, FlatList, TextInput, TouchableOpacity, KeyboardAvoidingView } from 'react-native'
 import Icon from '@expo/vector-icons/Ionicons'
 import ChatBoxHeader from "../Header/ChatBoxHeader";
 import Constants from "expo-constants";
 
+const data = [
+    {
+        id: 1,
+        msgsendby: 'sender',
+        message: 'hiii..',
+        msgtime: '1m ago',
+        seen: 1
+
+    },
+    {
+        id: 2,
+        msgsendby: 'reciver',
+        message: 'TextInput has by default a border at the bottom of its view. This border has its padding set by the background image provided by the system, and it cannot be changed. Solutions to avoid this are to either not set height explicitly, in which case the system will take care of displaying the border in the correct position, or to not display the border by setting underlineColorAndroid to transpare',
+        msgtime: '1m ago',
+
+    },
+    {
+        id: 3,
+        msgsendby: 'reciver',
+        message: 'hiii..',
+        msgtime: '2m ago',
+
+    },
+    {
+        id: 4,
+        msgsendby: 'sender',
+        message: 'TextInput has by default a border at the bottom of its view. This border has its padding set by the background image provided by the system, and it cannot be changed. Solutions to avoid this are to either not set height explicitly, in which case the system will take care of displaying the border in the correct position, or to not display the border by setting underlineColorAndroid to transpare',
+        msgtime: '2m ago',
+        seen: 0
+
+    },
+    {
+        id: 5,
+        msgsendby: 'reciver',
+        message: 'hiii..',
+        msgtime: '2m ago',
+        
+    },
+    {
+        id: 6,
+        msgsendby: 'sender',
+        message: 'TextInput has by default a border at the bottom of its view. This border has its padding set by the background image provided by the system, and it cannot be changed. Solutions to avoid this are to either not set height explicitly, in which case the system will take care of displaying the border in the correct position, or to not display the border by setting underlineColorAndroid to transpare',
+        msgtime: '2m ago',
+        seen: 0
+
+    },
+]
+
 
 function ChatBox() {
     const a = 1;
-    return (
-        <View style={styles.main}>
-            <View>
-                <ChatBoxHeader />
-            </View>
+    const msgsendby = "sender";
 
-
-            <ScrollView style={styles.chatarea}>
-
-                <View style={styles.msgsendcomp}>
-                    <Text style={styles.msgsend}>
-                        TextInput has by default a border at the bottom of its view. This border has its padding set by the background image provided by the system, and it cannot be changed. Solutions to avoid this are to either not set height explicitly, in which case the system will take care of displaying the border in the correct position, or to not display the border by setting underlineColorAndroid to transparent
-                    </Text>
-                    <View style={styles.seentime}>
-                        <Text style={styles.timesend}>1m ago</Text>
+    const renderItem = ({ item }) => (
+        <View>
+            {
+                msgsendby == item.msgsendby ?
+                    <View style={styles.msgresivedcomp}>
+                        <Text style={styles.msgresived}>
+                            {item.message}
+                        </Text>
+                        <View style={styles.seentime}>
+                            <Text style={styles.time}>{item.msgtime}</Text>
+                            {a == item.seen ? <Text style={styles.seenornot}><Icon name="checkmark-done" color='#96d7c6' size={15} style={styles.arrowback} /></Text> : <Text style={styles.seenornot}><Icon name="checkmark" color='white' size={15} style={styles.arrowback} /></Text>}
+                        </View>
                     </View>
-                </View>
-
-                <View style={styles.msgresivedcomp}>
-                    <Text style={styles.msgresived}>
-                        Hii..
-                    </Text>
-                    <View style={styles.seentime}>
-                        <Text style={styles.time}>1m ago</Text>
-                        {a == 1 ? <Text style={styles.seenornot}><Icon name="checkmark-done" color='#96d7c6' size={15} style={styles.arrowback} /></Text> : <Text style={styles.seenornot}><Icon name="checkmark" color='white' size={15} style={styles.arrowback} /></Text>}
+                    :
+                    <View style={styles.msgsendcomp}>
+                        <Text style={styles.msgsend}>
+                            {item.message}
+                        </Text>
+                        <View style={styles.seentime}>
+                            <Text style={styles.timesend}>{item.msgtime}</Text>
+                        </View>
                     </View>
-                </View>
-
-
-                <View style={styles.msgresivedcomp}>
-                    <Text style={styles.msgresived}>
-                        Two methods exposed via the native element are .focus() and .blur() that will focus or blur the TextInput programmatically.focus() and .blur() that will focus or blur the TextInput programmatically
-                    </Text>
-                    <View style={styles.seentime}>
-                        <Text style={styles.time}>1m ago</Text>
-                        {a == 1 ? <Text style={styles.seenornot}><Icon name="checkmark-done" color='#96d7c6' size={15} style={styles.arrowback} /></Text> : <Text style={styles.seenornot}><Icon name="checkmark" color='white' size={15} style={styles.arrowback} /></Text>}
-                    </View>
-                </View>
-
-
-
-                <View style={styles.msgsendcomp}>
-                    <Text style={styles.msgsend}>
-                        Hiii...
-                    </Text>
-                    <View style={styles.seentime}>
-                        <Text style={styles.timesend}>1m ago</Text>
-                    </View>
-                </View>
-                {/* Demo start */}
-                <View style={styles.msgsendcomp}>
-                    <Text style={styles.msgsend}>
-                        TextInput has by default a border at the bottom of its view. This border has its padding set by the background image provided by the system, and it cannot be changed. Solutions to avoid this are to either not set height explicitly, in which case the system will take care of displaying the border in the correct position, or to not display the border by setting underlineColorAndroid to transparent
-                    </Text>
-                    <View style={styles.seentime}>
-                        <Text style={styles.timesend}>1m ago</Text>
-                    </View>
-                </View>
-
-                <View style={styles.msgresivedcomp}>
-                    <Text style={styles.msgresived}>
-                        Hii..
-                    </Text>
-                    <View style={styles.seentime}>
-                        <Text style={styles.time}>1m ago</Text>
-                        {a == 1 ? <Text style={styles.seenornot}><Icon name="checkmark-done" color='#96d7c6' size={15} style={styles.arrowback} /></Text> : <Text style={styles.seenornot}><Icon name="checkmark" color='white' size={15} style={styles.arrowback} /></Text>}
-                    </View>
-
-                </View>
-
-
-                <View style={styles.msgresivedcomp}>
-                    <Text style={styles.msgresived}>
-                        Two methods exposed via the native element are .focus() and .blur() that will focus or blur the TextInput programmatically.focus() and .blur() that will focus or blur the TextInput programmatically
-                    </Text>
-                    <View style={styles.seentime}>
-                        <Text style={styles.time}>1m ago</Text>
-                        {a == 1 ? <Text style={styles.seenornot}><Icon name="checkmark-done" color='#96d7c6' size={15} style={styles.arrowback} /></Text> : <Text style={styles.seenornot}><Icon name="checkmark" color='white' size={15} style={styles.arrowback} /></Text>}
-                    </View>
-                </View>
-
-
-
-                <View style={styles.msgsendcomp}>
-                    <Text style={styles.msgsend}>
-                        Hiii...
-                    </Text>
-                    <View style={styles.seentime}>
-                        <Text style={styles.timesend}>1m ago</Text>
-                    </View>
-                </View>
-
-                {/* demo End */}
-
-            </ScrollView>
-
-            <View style={styles.footer}>
-                <TextInput
-                    style={styles.input}
-                    placeholder='write your message'
-                />
-                <TouchableOpacity style={styles.sendbtn}><Icon name="send" color='black' size={35} style={styles.arrowback} /></TouchableOpacity>
-            </View>
-
+            }
         </View>
+    )
+
+
+    return (
+        <KeyboardAvoidingView>
+            <View style={styles.main}>
+
+                <View>
+                    <ChatBoxHeader />
+                </View>
+
+                <View style={styles.flatlistdata}>
+                    <FlatList
+                        data={data}
+                        renderItem={renderItem}
+                    />
+                </View>
+                <View style={styles.footer}>
+                    <TextInput
+                        style={styles.input}
+                        placeholder='write your message'
+                    />
+                    <TouchableOpacity style={styles.sendbtn}><Icon name="send" color='black' size={35} style={styles.arrowback} /></TouchableOpacity>
+                </View>
+
+
+            </View>
+        </KeyboardAvoidingView>
     )
 }
 
@@ -121,14 +118,11 @@ const styles = StyleSheet.create({
     main: {
         paddingTop: Constants.statusBarHeight,
     },
-    chatarea: {
-        height: height - 129,
-        backgroundColor: '#e7e7e7',
+    flatlistdata: {
+        height: height - 130,
+        backgroundColor: '#e7e7e7'
     },
     footer: {
-        position: 'absolute',
-        bottom: -60,
-        marginTop: 30,
         height: 60,
         width: '100%',
         flexDirection: 'row',

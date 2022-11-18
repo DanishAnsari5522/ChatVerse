@@ -16,10 +16,13 @@
     "@react-navigation/stack": "^6.3.4",
     "expo": "~47.0.3",
     "expo-constants": "~14.0.2",
+    "expo-firebase-recaptcha": "~2.3.1",
     "expo-status-bar": "~1.4.2",
+    "firebase": "^9.6.11",
     "react": "18.1.0",
     "react-native": "0.70.5",
-    "react-native-gesture-handler": "^2.8.0"
+    "react-native-gesture-handler": "^2.8.0",
+    "react-native-webview": "^11.23.1"
   },
   "devDependencies": {
     "@babel/core": "^7.12.9"

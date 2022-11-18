@@ -16,14 +16,9 @@ function HomeScreen() {
             <TouchableOpacity style={styles.addicon} onPress={() => { navigation.navigate("AddUser") }}>
                 <Text style={styles.add}>+</Text>
             </TouchableOpacity>
-            {/* UserList */}
-            <ScrollView style={styles.list}>
-                <UserList />
-           
-
-
-
-            </ScrollView>
+            {/* UserList Start*/}
+            <UserList />
+            {/* UseList End */}
 
         </View>
     )
@@ -42,16 +37,16 @@ const styles = StyleSheet.create({
         top: windowHeight - 70,
         right: 20,
         zIndex: 99,
-        width:55
+        width: 55
     },
     add: {
         fontSize: 20,
-        height:55,
+        height: 55,
         backgroundColor: '#a567be',
         textAlign: 'center',
         color: 'white',
         borderRadius: 50,
-        paddingTop:9
+        paddingTop: 9
 
     },
     head: {
