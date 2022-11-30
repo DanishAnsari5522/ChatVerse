@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "ChatVerse",
-    "slug": "ChatVerse",
+    "name": "chatverse",
+    "slug": "chatverse",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
@@ -19,7 +19,7 @@
     ],
     "ios": {
       "supportsTablet": true,
-      "bundleIdentifier":"com.cnq.ChatVerse",
+      "bundleIdentifier":"com.cnq.chatverse",
       "buildNumber":"1.0.0"
     },
     "android": {
@@ -27,7 +27,7 @@
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#FFFFFF"
       },
-      "package":"com.cnq.ChatVerse",
+      "package":"com.cnq.chatverse",
       "versionCode":1
     },
     "web": {

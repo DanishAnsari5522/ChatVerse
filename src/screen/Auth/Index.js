@@ -1,36 +1,37 @@
 
 import React, { useState } from 'react'
-import { View, Text, TextInput, StyleSheet, Button, Image, Pressable,TouchableOpacity, ToastAndroid } from "react-native";
-import { _login } from '../Config/api.servise';
-// import { TouchableOpacity } from 'react-native-gesture-handler';
+import { View, Text, TextInput, StyleSheet, Image, TouchableOpacity, } from "react-native"
+import { _login } from '../../Config/api.servise';
+import logo from "../../../assets/logo.png"
+import AsyncStorage from '@react-native-async-storage/async-storage'
 
-function PhoneNoScreen() {
-    const [phoneNo, setPhoneNo] = useState();
-    const Submit =async () => {
+
+function Index({ navigation }) {
+    const [phoneNo, setPhoneNo] = useState()
+    const [loading, setLoading] = useState(false)
+    const Submit = async () => {
         console.log(phoneNo);
-        if (!phoneNo){
+        if (!phoneNo) {
             alert("Enter Phone no.")
-            // ToastAndroid("Enter Phone no",ToastAndroid.LONG)
             return
         }
-        if(phoneNo.length!=10)
-        {
+        if (phoneNo.length != 10) {
             alert("Enter Valid Phone no.")
             return
         }
-        const res=await _login(phoneNo)
-        if(res?.mobile)
-        {
-            console.log("Login Success");
-        }else{
+        const res = await _login(phoneNo)
+        if (res?.mobile) {
+            // console.log("Login Success");
+            await AsyncStorage.setItem("currentUser", JSON.stringify(res))
+            navigation.replace("AfterAuth");
+        } else {
             alert("Somthing wrong")
         }
-
-      
     }
+
     return (
         <View style={styles.main}>
-            <Image source={require('../../assets/emptywishlist1.png')} style={styles.logo} />
+            <Image source={logo} style={styles.logo} />
             <TextInput
                 placeholder="Phone No."
                 style={styles.input}
@@ -39,9 +40,21 @@ function PhoneNoScreen() {
                 maxLength={10}
                 keyboardType="number-pad"
             />
-            <TouchableOpacity style={styles.btncomp} onPress={Submit}>
-                <Text style={styles.getinbtn}>Get In</Text>
-            </TouchableOpacity>
+
+
+
+            {
+                loading ? (
+                    <View style={styles.btncomp}>
+                        <ActivityIndicator size={20} color="#efefef" />
+                    </View>
+                ) : (
+                    <TouchableOpacity style={styles.btncomp} onPress={Submit}>
+                        <Text style={styles.getinbtn}>Get In</Text>
+                    </TouchableOpacity>
+                )
+            }
+
             <View style={styles.appnames}>
                 <Text style={styles.chatverse}>ChatVerse</Text>
             </View>
@@ -52,7 +65,6 @@ function PhoneNoScreen() {
 const styles = StyleSheet.create({
     main: {
         width: '100%',
-        // backgroundColor:'black'
     },
     input: {
         borderBottomWidth: 2,
@@ -62,10 +74,10 @@ const styles = StyleSheet.create({
         alignSelf: 'center'
     },
     logo: {
-        width: 70,
-        height: 70,
+        width: 100,
+        height: 100,
         alignSelf: 'center',
-        marginTop: 100
+        marginTop: 120
     },
     btncomp: {
         alignSelf: 'center'
@@ -82,7 +94,7 @@ const styles = StyleSheet.create({
     },
     appnames: {
         alignSelf: 'center',
-        marginTop: '100%'
+        marginTop: '90%'
 
     },
     chatverse: {
@@ -91,4 +103,4 @@ const styles = StyleSheet.create({
 
 })
 
-export default PhoneNoScreen;
+export default Index;

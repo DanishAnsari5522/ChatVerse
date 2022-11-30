@@ -1,12 +1,10 @@
 import RootNavigator from './src/Navigation/RootNavigator';
-import Otp from './src/component/Index';
-
+import { AppContextProvider } from './src/context/AppContext';
 export default function App() {
   return (
-    <>
+    <AppContextProvider>
       <RootNavigator />
-      {/* <Otp /> */}
-    </>
+    </AppContextProvider>
   );
 }
 
